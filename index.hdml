@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<title>サンタの残した謎</title>
+
+<style>
+
+body{
+margin:0;
+min-height:100vh;
+background:linear-gradient(180deg,#0b1f42,#18386b);
+font-family:"Yu Gothic",sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+.card{
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(8px);
+padding:40px;
+border-radius:20px;
+width:550px;
+max-width:90%;
+text-align:center;
+box-shadow:0 0 30px rgba(255,255,255,0.3);
+}
+
+.tree{
+font-size:80px;
+margin-bottom:10px;
+}
+
+h1{
+color:#ffdf5d;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:18px;
+margin-bottom:25px;
+}
+
+input{
+font-size:22px;
+padding:12px;
+width:220px;
+border-radius:8px;
+border:none;
+text-align:center;
+}
+
+button{
+margin-top:15px;
+padding:12px 30px;
+font-size:20px;
+background:#d62828;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#b71c1c;
+}
+
+#message{
+margin-top:25px;
+font-size:22px;
+line-height:1.8;
+}
+
+.progress{
+margin-top:20px;
+font-size:20px;
+color:#90ee90;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="tree">🎄</div>
+
+<h1>サンタの残した謎</h1>
+
+<div class="subtitle">
+
+サンタさんから緊急メッセージが届いています。<br>
+認証コードを入力してプレゼントの隠し場所を探してください。
+
+</div>
+
+<input
+id="pw"
+placeholder="認証コード">
+
+<br>
+
+<button onclick="checkPassword()">
+🎁 認証する
+</button>
+
+<div id="message"></div>
+
+</div>
+
+<script>
+
+function checkPassword(){
+
+const pw =
+document.getElementById("pw").value;
+
+if(pw==="3853"){
+
+startLoading();
+
+}else{
+
+document.getElementById("message").innerHTML=
+`
+<div style="color:#ffaaaa">
+うおwww 違うんだが（笑）
+</div>
+`;
+
+}
+
+}
+
+function startLoading(){
+
+let p=0;
+
+document.getElementById("message").innerHTML=
+`
+<div class="progress">
+🎄 クリスマス情報を復元中...
+<br><br>
+□□□□□□□□□□ 0%
+</div>
+`;
+
+let timer = setInterval(function(){
+
+p += 10;
+
+let bar = "■".repeat(p/10)
++ "□".repeat(10-p/10);
+
+document.getElementById("message").innerHTML=
+`
+<div class="progress">
+🎄 クリスマス情報を復元中...
+<br><br>
+${bar} ${p}%
+</div>
+`;
+
+if(p>=100){
+
+clearInterval(timer);
+
+document.getElementById("message").innerHTML=
+`
+<div style="color:#90ee90">
+
+✅ 復元完了
+
+<br><br>
+
+🎅 サンタからの手紙
+
+<br><br>
+
+メリークリスマス！
+
+<br><br>
+
+プレゼントを見つけるための
+次の手掛かりは…
+
+<br><br>
+
+⭐
+『高橋ははなくそ』
+⭐
+
+</div>
+`;
+}
+
+},250);
+
+}
+
+</script>
+
+</body>
+</html>
