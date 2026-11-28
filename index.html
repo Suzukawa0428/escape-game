@@ -3,20 +3,32 @@
 
 <head>
 <meta charset="UTF-8">
-<title>極秘情報解析システム</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>国家情報統合解析局</title>
 
 <style>
 
 *{
+margin:0;
+padding:0;
 box-sizing:border-box;
 }
 
 body{
-margin:0;
+
 min-height:100vh;
 
 background:
-radial-gradient(circle at top,#123a78,#050914 70%);
+linear-gradient(
+rgba(0,0,0,0.75),
+rgba(0,0,0,0.85)
+),
+url("AI_Hayato.png");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 
 font-family:"Yu Gothic",sans-serif;
 
@@ -25,7 +37,9 @@ justify-content:center;
 align-items:center;
 
 overflow:hidden;
+
 color:white;
+
 }
 
 /* 電脳グリッド */
@@ -46,10 +60,10 @@ background:
 
 repeating-linear-gradient(
 90deg,
-rgba(0,255,255,0.07) 0px,
-rgba(0,255,255,0.07) 1px,
+rgba(0,255,255,0.05) 0px,
+rgba(0,255,255,0.05) 1px,
 transparent 1px,
-transparent 50px
+transparent 60px
 ),
 
 repeating-linear-gradient(
@@ -57,22 +71,57 @@ repeating-linear-gradient(
 rgba(0,255,255,0.05) 0px,
 rgba(0,255,255,0.05) 1px,
 transparent 1px,
-transparent 50px
+transparent 60px
 );
 
-animation:gridMove 12s linear infinite;
+animation:gridMove 15s linear infinite;
 
 pointer-events:none;
+
+}
+
+/* 光る円 */
+
+body::after{
+
+content:"";
+
+position:absolute;
+
+width:500px;
+height:500px;
+
+border-radius:50%;
+
+border:2px solid rgba(0,255,255,0.2);
+
+box-shadow:
+0 0 50px rgba(0,255,255,0.2);
+
+animation:rotateCircle 25s linear infinite;
+
+}
+
+@keyframes rotateCircle{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
 }
 
 @keyframes gridMove{
 
-0%{
+from{
 transform:translateY(0px);
 }
 
-100%{
-transform:translateY(50px);
+to{
+transform:translateY(60px);
 }
 
 }
@@ -80,137 +129,106 @@ transform:translateY(50px);
 .card{
 
 position:relative;
-z-index:5;
+z-index:10;
 
 width:650px;
-max-width:92%;
+max-width:90%;
 
 padding:40px;
 
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,0.58);
 
 backdrop-filter:blur(12px);
 
-border:1px solid rgba(0,255,255,0.3);
-
 border-radius:20px;
 
+border:1px solid rgba(0,255,255,0.25);
+
+box-shadow:
+0 0 20px rgba(0,255,255,0.25),
+0 0 60px rgba(0,120,255,0.25);
+
 text-align:center;
-
-box-shadow:
-0 0 20px #00ffff55,
-0 0 60px #0088ff33;
-
-}
-
-/* AIハヤト代替ホログラム */
-
-.ai{
-
-width:140px;
-height:140px;
-
-margin:auto;
-
-border-radius:50%;
-
-border:3px solid #4fdfff;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:70px;
-
-background:
-radial-gradient(circle,#4fdfff33,#001b33);
-
-box-shadow:
-0 0 20px #4fdfff,
-0 0 50px #4fdfff;
-
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-
-0%{
-transform:scale(1);
-opacity:.8;
-}
-
-50%{
-transform:scale(1.05);
-opacity:1;
-}
-
-100%{
-transform:scale(1);
-opacity:.8;
-}
 
 }
 
 h1{
 
+font-size:42px;
+
+margin-bottom:15px;
+
 color:#4fdfff;
 
-letter-spacing:4px;
+letter-spacing:5px;
 
 text-shadow:
 0 0 10px #4fdfff,
-0 0 20px #4fdfff;
+0 0 20px #4fdfff,
+0 0 40px #4fdfff;
 
 }
 
 .subtitle{
 
 line-height:1.8;
-color:#ddd;
 
-margin-bottom:25px;
+font-size:18px;
+
+color:#dddddd;
+
+margin-bottom:30px;
 
 }
 
 input{
 
-width:250px;
+width:260px;
 
-padding:13px;
+padding:14px;
+
+background:#061321;
+
+color:white;
+
+border:1px solid #4fdfff;
+
+border-radius:10px;
 
 font-size:22px;
 
 text-align:center;
 
-background:#071423;
+outline:none;
 
-border:1px solid #4fdfff;
+}
 
-color:white;
+input:focus{
 
-border-radius:10px;
+box-shadow:
+0 0 10px #4fdfff;
 
 }
 
 button{
 
-margin-top:15px;
+margin-top:20px;
 
-padding:13px 35px;
+padding:12px 35px;
 
 font-size:20px;
+
+background:#0099ff;
+
+color:white;
 
 border:none;
 
 border-radius:10px;
 
-background:#00a9ff;
-
-color:white;
-
 cursor:pointer;
 
-transition:.3s;
+transition:0.3s;
 
 }
 
@@ -218,7 +236,8 @@ button:hover{
 
 transform:scale(1.05);
 
-box-shadow:0 0 20px #00ccff;
+box-shadow:
+0 0 20px #00ccff;
 
 }
 
@@ -228,7 +247,7 @@ margin-top:30px;
 
 font-size:22px;
 
-line-height:1.8;
+line-height:2;
 
 }
 
@@ -240,18 +259,34 @@ font-size:22px;
 
 }
 
-.keyword{
+.access{
 
-font-size:90px;
+font-size:30px;
 
 font-weight:bold;
 
-color:#ffd700;
+color:#00ff88;
 
 text-shadow:
-0 0 20px #ffd700,
-0 0 40px #ffd700,
-0 0 60px #ffd700;
+0 0 10px #00ff88,
+0 0 20px #00ff88;
+
+margin-bottom:20px;
+
+}
+
+.keyword{
+
+font-size:100px;
+
+font-weight:bold;
+
+color:#00ffff;
+
+text-shadow:
+0 0 15px #00ffff,
+0 0 30px #00ffff,
+0 0 60px #00ffff;
 
 animation:flash 1s infinite alternate;
 
@@ -269,18 +304,6 @@ opacity:1;
 
 }
 
-.access{
-
-font-size:26px;
-
-color:#00ff88;
-
-font-weight:bold;
-
-margin-bottom:20px;
-
-}
-
 </style>
 
 </head>
@@ -289,11 +312,7 @@ margin-bottom:20px;
 
 <div class="card">
 
-<div class="ai">
-🤖
-</div>
-
-<h1>極秘情報解析システム</h1>
+<h1>国家情報統合解析局</h1>
 
 <div class="subtitle">
 
@@ -301,12 +320,13 @@ AIハヤトより緊急通信
 
 <br><br>
 
-国家機密ファイルが暗号化されています。
+暗号化された機密情報を発見
 
 <br>
 
 認証コードを入力し、
-極秘データを復元してください。
+
+情報の復元を開始してください
 
 </div>
 
@@ -326,7 +346,7 @@ placeholder="認証コード">
 
 <script>
 
-const keywordMap = {
+const keywordMap={
 
 "1":"A",
 "2":"B",
@@ -341,8 +361,7 @@ const keywordMap = {
 
 function checkPassword(){
 
-const pw =
-document.getElementById("pw").value;
+const pw=document.getElementById("pw").value;
 
 if(keywordMap[pw]){
 
@@ -365,12 +384,18 @@ function startLoading(keyword){
 
 let p=0;
 
-document.getElementById("message").innerHTML=
+const stages=[
+"衛星リンク接続",
+"通信路確保",
+"暗号解析中",
+"情報復元処理開始"
+];
 
+document.getElementById("message").innerHTML=
 `
 <div class="progress">
 
-情報を復元中...
+衛星リンク接続
 
 <br><br>
 
@@ -379,21 +404,28 @@ document.getElementById("message").innerHTML=
 </div>
 `;
 
-let timer = setInterval(function(){
+const timer=setInterval(function(){
 
-p += 10;
+p+=10;
 
-let bar =
+let stage=
+stages[
+Math.min(
+Math.floor(p/30),
+3
+)
+];
+
+let bar=
 "■".repeat(p/10)
 +
 "□".repeat(10-p/10);
 
 document.getElementById("message").innerHTML=
-
 `
 <div class="progress">
 
-情報を復元中...
+${stage}
 
 <br><br>
 
@@ -407,7 +439,6 @@ if(p>=100){
 clearInterval(timer);
 
 document.getElementById("message").innerHTML=
-
 `
 <div class="access">
 
@@ -415,22 +446,28 @@ document.getElementById("message").innerHTML=
 
 </div>
 
-<div style="color:#90ee90">
+<div style="color:#90ee90;">
 
-機密ファイルの復元に成功しました
-
-<br><br>
-
-ハヤトからの手紙
+機密情報へのアクセスを許可
 
 <br><br>
 
-謎を見つけるための手掛かりは…
+解析レベル：S
+
+<br>
+
+情報提供者：AIハヤト
+
+<br><br>
+
+謎を見つけるための手掛かりは...
 
 <br><br>
 
 <div class="keyword">
+
 ${keyword}
+
 </div>
 
 </div>
